@@ -1,5 +1,6 @@
 services:
-  fast-api:
+  th-ocr-feedback:
+    container_name: ${CONTAINER_NAME}
     environment:
       TZ: Asia/Seoul
     build:
