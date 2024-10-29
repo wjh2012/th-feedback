@@ -1,0 +1,14 @@
+/.venv/
+/venv/
+/sql_app.db
+__pycache__/
+*pyc
+
+weights/*
+*.pt
+*.pth
+
+logfile.log
+logfile.log.*
+logs/
+/uploads/
