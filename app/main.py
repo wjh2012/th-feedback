@@ -18,12 +18,12 @@ async def upload_file(
     save_directory.mkdir(parents=True, exist_ok=True)  # 디렉토리가 없으면 생성
 
     # 현재 시간을 밀리초 단위로 포맷팅하여 접두사로 추가
-    current_time = datetime.now().strftime("%Y%m%d_%H%M%S_%f")[:-3]
+    current_time = datetime.now().strftime("%Y%m%d%H%M%S_%f")[:-4]
     client_ip = request.client.host  # 클라이언트 IP 주소 가져오기
 
     # 이미지와 텍스트 파일 이름에 시간과 IP 주소를 접두사로 추가
-    image_filename = f"{current_time}_{client_ip}_{file.filename}"
-    text_filename = f"{current_time}_{client_ip}_uploaded_text.txt"
+    image_filename = f"{current_time}_{file.filename}"
+    text_filename = f"{current_time}_{file.filename}.txt"
 
     # 이미지 파일 저장 경로 설정
     image_path = save_directory / image_filename
