@@ -43,18 +43,18 @@ async def upload_file(
         raise HTTPException(status_code=400, detail=f"Invalid JSON data: {e}")
 
 
-    if not parsed_data.before:
-        if parsed_data.after:
-            detect_type = "test"
-        else:
-            detect_type = "FN"
-    else:
+    if parsed_data.before:
         if len(parsed_data.before) > len(parsed_data.after):
             detect_type = "FP"
         elif len(parsed_data.before) < len(parsed_data.after):
             detect_type = "FN"
         else:
             detect_type = "FIX"
+    else:
+        if parsed_data.after:
+            detect_type = "FN"
+        else:
+            detect_type = "test"
 
     # 이미지와 텍스트 파일 이름에 시간과 IP 주소를 접두사로 추가
     image_filename = f"{current_time}_{Path(file.filename).stem}_{detect_type}{Path(file.filename).suffix}"
